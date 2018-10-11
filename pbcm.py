@@ -3,6 +3,8 @@
 from read import Read
 import fbcm
 import numpy as np
+import os
+
 
 class Bcm(object):
     '''
@@ -29,6 +31,7 @@ class Bcm(object):
 
     def calc_folder(self,folderpath):
         resultstore = []
+        k = 0
         for root, dirs, files in os.walk(folderpath):
             for file in files:
                 if file != 'POSCAR':
