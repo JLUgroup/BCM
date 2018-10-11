@@ -44,8 +44,7 @@ class Bcm(object):
                 bcmstore.append(bcmatrix)
                 bcmstore.append(filepath)
                 resultstore.append(bcmstore)
-                
-	    print 'total num = ', k
+        print 'total num = ', k
         return resultstore
 
 
