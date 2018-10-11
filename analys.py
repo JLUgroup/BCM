@@ -66,7 +66,11 @@ if __name__ == '__main__':
 	path = '/home/jhxie/1e/'
 #	distribute_calc(path)
 	a = __cluster(path)
-	print a
+	b = open('cluster_result.txt','w')
+	for i in a:
+		b.write(i)
+		b.write('\n')
+	b.close()
 
 
 
