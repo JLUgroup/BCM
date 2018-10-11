@@ -53,6 +53,8 @@ def __cluster(folderpath):
 	bcmstore = []
 	resultmat = Bcm().calc_folder(folderpath)
 	for result in resultmat:
+
+		result.flatten()
 		bcmstore.append(result[0])
 	
 	Z = linkage(bcmstore,'ward')
