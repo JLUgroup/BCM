@@ -13,24 +13,14 @@ import numpy as np
 def distribute_calc(folderpath):
 	a = open('distances.txt','w')
 	b = open('distfrom0.txt','w')
-	bcmstore = {}
+	bcmstore = []
 	diststore = []
 	dist0store = []
-	k = 0
-	for root, dirs, files in os.walk(folderpath):
-		for file in files:
-			if file != 'POSCAR':
-				continue
-			k = k + 1
-			filepath = os.path.join(root, file)
-			print filepath
-			
-			bcmatrix = Bcm(filepath, 'poscar').bcm_calc()
-			bcmstore[k] = bcmatrix
-			bcmstore[-k] = filepath
-
-	print 'total num = ',k
-
+	
+	resultmat = Bcm().calc_folder(folderpath)
+	for result in resultmat:
+		bcmstore.append(result[0])	
+	k = len(bcmstore)
 	for i in range(1,k):
 		for j in range(i+1,k+1):
 			dist = Bcm().distxy(bcmstore[i],bcmstore[j])
@@ -60,29 +50,23 @@ def distribute_calc(folderpath):
 
 
 def __cluster(folderpath):
-	bcmstore = {}
-	k = 0
-	for root, dirs, files in os.walk(folderpath):
-		for file in files:
-			if file != 'POSCAR':
-				continue
-			k = k + 1
-			filepath = os.path.join(root, file)
-			print filepath
-
-			bcmatrix = Bcm(filepath, 'poscar').bcm_calc()
-			bcmstore[k] = bcmatrix
-			bcmstore[-k] = filepath
-
-	print 'total num = ', k
-
-
+	bcmstore = []
+	resultmat = Bcm().calc_folder(folderpath)
+	for result in resultmat:
+		bcmstore.append(result[0])
+	
+	Z = linkage(bcmstore,'ward')
+	return Z
 
 
 
 if __name__ == '__main__':
 	path = '/home/jhxie/1e/'
-	distribute_calc(path)
+#	distribute_calc(path)
+	a = __cluster(path)
+	print a
+
+
 
 
 

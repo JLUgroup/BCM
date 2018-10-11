@@ -9,24 +9,42 @@ class Bcm(object):
 
     '''
 
-    def __init__(self,filepath=None,type=None):
-        self.filepath = filepath
+    def __init__(self,type='poscar'):
+
         self.type = type
 
 
-    def bcm_calc(self):
+    def bcm_calc(self,filepath):
 
-        structure = Read(self.filepath,self.type).getStructure()
+        structure = Read(filepath,self.type).getStructure()
         nele = len(structure['elements'])
         natom = sum(structure['numbers'])
         lattice = structure['lattice']
         positions = structure['positions']
         numbers = structure['numbers']
         bcmatrix = fbcm.bcm(nele,natom,positions,lattice,numbers)
-        while 0 in bcmatrix
         bcmatrix = np.array(bcmatrix)
 
         return bcmatrix
+
+    def calc_folder(self,folderpath):
+        resultstore = []
+        for root, dirs, files in os.walk(folderpath):
+            for file in files:
+                if file != 'POSCAR':
+                    continue
+                k = k + 1
+                filepath = os.path.join(root, file)
+                print filepath
+                bcmstore = []
+                bcmatrix = self.bcm_calc(filepath)
+                bcmstore[0] = bcmatrix
+                bcmstore[1] = filepath
+                resultstore.append(bcmstore)
+	    print 'total num = ', k
+        return resultstore
+
+
 
 
     def distxy(self,x,y):
