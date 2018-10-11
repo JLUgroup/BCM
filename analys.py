@@ -53,7 +53,7 @@ def __cluster(folderpath):
 	bcmstore = []
 	resultmat = Bcm().calc_folder(folderpath)
 	for result in resultmat:
-
+		result = np.array(result)
 		result.flatten()
 		bcmstore.append(result[0])
 	
