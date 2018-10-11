@@ -3,6 +3,10 @@ from pbcm import Bcm
 import fbcm
 import os
 
+from matplotlib import pyplot as plt
+from scipy.cluster.hierarchy import dendrogram, linkage
+import numpy as np
+
 #import numpy as np
 
 
@@ -52,6 +56,28 @@ def distribute_calc(folderpath):
 
 	a.close()
 	b.close()
+
+
+
+def __cluster(folderpath):
+	bcmstore = {}
+	k = 0
+	for root, dirs, files in os.walk(folderpath):
+		for file in files:
+			if file != 'POSCAR':
+				continue
+			k = k + 1
+			filepath = os.path.join(root, file)
+			print filepath
+
+			bcmatrix = Bcm(filepath, 'poscar').bcm_calc()
+			bcmstore[k] = bcmatrix
+			bcmstore[-k] = filepath
+
+	print 'total num = ', k
+
+
+
 
 
 if __name__ == '__main__':

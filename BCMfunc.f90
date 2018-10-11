@@ -1,5 +1,5 @@
 
-subroutine BCM(nele,natom,tau0,lat_matrix,ele_num,q)
+subroutine BCM(nele,natom,tau0,lat_matrix,ele_num,q0)
 
   implicit none
   integer(kind=4)             :: i, j, k, ix, iy, iz, i1, i2, i3, k1
@@ -10,13 +10,13 @@ subroutine BCM(nele,natom,tau0,lat_matrix,ele_num,q)
   real(kind=8)                :: eps,eps1,tmp,temp(3)
   real(kind=8)                :: rms,x,y,z,r,theta,phi,maxr,rp(400*natom),rpmin(natom,nele)
   real(kind=8)                :: pos (3,400*natom,nele), mo(nele,nele), tau1(3,natom), tau(3,natom), tau0(natom,3)
-  real(kind=8)                :: dis(nele,nele), q(11,nele,nele)
+  real(kind=8)                :: dis(nele,nele), q(11,nele,nele), q0(6,nele,nele)
   complex                     :: Yx(nele,nele),sumY(nele,nele)
 
 !f2py intent(in) tau0
 !f2py intent(in) lat_matrix
 !f2py intent(in) ele_num
-!f2py intent(out) q
+!f2py intent(out) q0
 !f2py depend(ele_num) nele
 !f2py depend(tau0) natom
 
@@ -148,12 +148,18 @@ enddo
      end do
   end do
 
-  do l=1,11
-     if(mod(l,2) == 0) then
-     q(l,:,:) = 0
-     else
-     end if
-  end do
+
+  do i = 1,6
+    do j = 1,nele
+      do k = 1,nele
+         q0(i,j,k) = q(2*i-1,j,k)
+      enddo
+    enddo
+  enddo
+
+
+
+
   end subroutine BCM
 
   subroutine dist_BCM(Distance,q1,q2,nele)

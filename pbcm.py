@@ -23,6 +23,7 @@ class Bcm(object):
         positions = structure['positions']
         numbers = structure['numbers']
         bcmatrix = fbcm.bcm(nele,natom,positions,lattice,numbers)
+        while 0 in bcmatrix
         bcmatrix = np.array(bcmatrix)
 
         return bcmatrix

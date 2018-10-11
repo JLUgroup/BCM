@@ -1,10 +1,11 @@
+  
+
 
 def data_calculate(partnum = None):
     a = open('distances.txt', 'r')
     b = open('calout.txt', 'w')
-    #calout = []
 
-    numcount = []
+    numcount = []  
     for i in range(partnum):
         numcount.append(0)
 
@@ -14,8 +15,6 @@ def data_calculate(partnum = None):
     a.seek(0,0)
     for data in a:
         data = float(data)
-    #   if num1 < data <num2:
-    #        numcount(k) = numcount(k) +1
         for i in range(partnum):
             if  i*length < data < (i+1)*length:
                 numcount[i]+=1
