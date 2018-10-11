@@ -41,8 +41,8 @@ class Bcm(object):
                 print filepath
                 bcmstore = []
                 bcmatrix = self.bcm_calc(filepath)
-                bcmstore[0] = bcmatrix
-                bcmstore[1] = filepath
+                bcmstore.append(bcmatrix)
+                bcmstore.append(filepath)
                 resultstore.append(bcmstore)
 	    print 'total num = ', k
         return resultstore
