@@ -68,4 +68,4 @@ def __genget(generation):
 if __name__ == '__main__':
     #plotcluster()
     #plotZ()
-    __genget(2865)
+    __genget(3175)
