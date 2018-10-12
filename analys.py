@@ -70,7 +70,7 @@ def __cluster(folderpath):
 def __genget():
 	Z = np.load('cluster_result.npy')
 	lengt = len(Z)
-	for gen in Z:
+#	for gen in Z
 
 
 
