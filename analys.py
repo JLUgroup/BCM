@@ -69,7 +69,7 @@ def __cluster(folderpath):
 def __reprecluster():
 	namef = open('finallist.txt','r')
 	for name in namef:
-		print name
+		print str(name)
 
 
 
