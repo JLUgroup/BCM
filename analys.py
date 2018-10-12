@@ -52,13 +52,26 @@ def distribute_calc(folderpath):
 def __cluster(folderpath):
 	bcmstore = []
 	resultmat = Bcm().calc_folder(folderpath)
+	ns = open('name.txt','w')
 	for result in resultmat:
 		aresult = np.array(result[0])
 		aresult = aresult.flatten()
 		bcmstore.append(aresult)
-	
+		ns.write(result[1])
+		ns.write('\n')
+	ns.close()
 	Z = linkage(bcmstore,'ward')
+	np.save('cluster_result.npy', Z)
+	np.savetxt('cluster.txt', Z)
+
 	return Z
+
+
+def __genget():
+	Z = np.load('cluster_result.npy')
+	lengt = len(Z)
+	for gen in Z:
+
 
 
 
@@ -66,8 +79,7 @@ if __name__ == '__main__':
 	path = '/home/jhxie/1e/'
 #	distribute_calc(path)
 	a = __cluster(path)
-	np.save('cluster_result.npy',a)
-	np.savetxt('cluster.txt',a)
+	
 	#b = open('cluster_result.txt','w')
 	#for i in a:
 #		b.write(i)
