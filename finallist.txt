@@ -3885,4 +3885,3 @@
 /home/jhxie/1e/1830/POSCAR
 /home/jhxie/1e/871/POSCAR
 
-result cluster num =511
