@@ -1,3 +1,4 @@
+# coding: utf-8
 from pbcm import Bcm
 #from read import Read
 import fbcm
