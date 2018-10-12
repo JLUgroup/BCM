@@ -68,9 +68,15 @@ def __cluster(folderpath):
 
 def __reprecluster():
 	namef = open('finallist.txt','r')
+	clusters = []
+	cluster = []
 	for name in namef:
-		print str(name)
-
+		if name:
+			cluster.append(name)
+		else:
+			clusters.append(cluster)
+			cluster = []
+	print clusters
 
 
 

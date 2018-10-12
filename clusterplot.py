@@ -53,8 +53,8 @@ def __genget(generation):
             for b in a:
                 finallist.write(b)
             finallist.write('\n')
-    finallist.write('result cluster num = ')
-    finallist.write(str(k))
+    #finallist.write('result cluster num = ')
+    #finallist.write(str(k))
     finallist.close()
     print k,len(nameresult)
 
