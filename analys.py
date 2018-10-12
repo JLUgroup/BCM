@@ -20,7 +20,7 @@ def distribute_calc(folderpath):
 	for result in resultmat:
 		bcmstore.append(result[0])	
 	k = len(bcmstore)
-	for i in range(1,k):
+	for i in range(1,k):#此处代码有错误
 		for j in range(i+1,k+1):
 			dist = Bcm().distxy(bcmstore[i],bcmstore[j])
 			diststore.append(dist)
@@ -70,13 +70,47 @@ def __reprecluster():
 	namef = open('finallist.txt','r')
 	clusters = []
 	cluster = []
+	repreclusters = []
+	clusbcmstore = []
+	ns = open('represent_cluster.txt','r')
 	for name in namef:
 		if name != '\n':
 			cluster.append(name)
 		else:
 			clusters.append(cluster)
 			cluster = []
-	print len(clusters)
+	
+	for cluste in clusters:
+		for struct in cluste:
+			struct = struct.strip('\n')
+			bcm = Bcm().bcm_calc(struct)
+			clusbcmstore.append(bcm)
+
+		sumdists = []
+		k = len(cluste)
+		for i in range(k):
+			sumdist = 0 
+			for j in range(k):
+				dist = Bcm().distxy(clusbcmstore[i], clusbcmstore[j])
+				sumdist += dist
+			sumdists.append(sumdist)
+
+		mindist = min(sumdists)
+		minindex = sumdists.index(mindist)
+		reprecluster = cluste[minindex]
+		repreclusters.append(reprecluster)
+		ns.write(reprecluster)
+		ns.write('\n')
+		print sumdists
+		print minindex
+		print reprecluster
+		
+	ns.close()
+	print len(repreclusters)
+
+	
+
+
 
 
 
