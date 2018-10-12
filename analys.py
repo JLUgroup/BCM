@@ -101,7 +101,6 @@ def __reprecluster():
 		reprecluster = cluste[minindex]
 		repreclusters.append(reprecluster)
 		ns.write(reprecluster)
-		ns.write('\n')
 		print sumdists
 		print minindex
 		print reprecluster
