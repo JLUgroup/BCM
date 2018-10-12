@@ -6,8 +6,7 @@ import os
 from matplotlib import pyplot as plt
 from scipy.cluster.hierarchy import dendrogram, linkage
 import numpy as np
-
-#import numpy as np
+from clusterplot import __genget
 
 
 def distribute_calc(folderpath):
@@ -67,10 +66,18 @@ def __cluster(folderpath):
 	return Z
 
 
-def __genget():
-	Z = np.load('cluster_result.npy')
-	lengt = len(Z)
-#	for gen in Z
+def __reprecluster():
+	namef = open('finallist.txt','r')
+	for name in namef:
+		print name
+
+
+
+
+
+		
+
+
 
 
 
@@ -78,8 +85,8 @@ def __genget():
 if __name__ == '__main__':
 	path = '/home/jhxie/1e/'
 #	distribute_calc(path)
-	a = __cluster(path)
-	
+	#a = __cluster(path)
+	__reprecluster()
 	#b = open('cluster_result.txt','w')
 	#for i in a:
 #		b.write(i)
