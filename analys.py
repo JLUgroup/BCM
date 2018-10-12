@@ -76,7 +76,7 @@ def __reprecluster():
 		else:
 			clusters.append(cluster)
 			cluster = []
-	print clusters
+	print len(clusters)
 
 
 
