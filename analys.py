@@ -73,7 +73,7 @@ def __reprecluster():
 	cluster = []
 	repreclusters = []
 	clusbcmstore = []
-	ns = open('represent_cluster.txt','r')
+	ns = open('represent_cluster.txt','w')
 	for name in namef:
 		if name != '\n':
 			cluster.append(name)
