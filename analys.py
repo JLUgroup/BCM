@@ -71,7 +71,7 @@ def __reprecluster():
 	clusters = []
 	cluster = []
 	for name in namef:
-		if name:
+		if name != '\n':
 			cluster.append(name)
 		else:
 			clusters.append(cluster)
