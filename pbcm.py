@@ -11,7 +11,7 @@ class Bcm(object):
 
     '''
 
-    def __init__(self,type='poscar'):
+    def __init__(self,type=None):
 
         self.type = type
 
@@ -34,7 +34,9 @@ class Bcm(object):
         k = 0
         for root, dirs, files in os.walk(folderpath):
             for file in files:
-                if file != 'POSCAR':
+                try:
+                    test = Read(file)
+                except Exception:
                     continue
                 k = k + 1
                 filepath = os.path.join(root, file)
@@ -58,7 +60,7 @@ class Bcm(object):
     	d = np.linalg.norm(x-y)
     	return d
 
-    def dit0(self,x):
+    def dist0(self,x):
 
         a = np.linalg.norm(x)
 

@@ -1,0 +1,74 @@
+{\rtf1\ansi \deff1{\fonttbl{\f1\fmodern\fprq1\fcharset0 Courier;}}{\colortbl;\red30\green36\blue38;\red186\green189\blue182;\red138\green226\blue52;\red138\green226\blue52;\red101\green103\blue99;\red101\green103\blue99;\red136\green138\blue133;\red229\green138\blue138;\red138\green226\blue52;\red101\green103\blue99;\red198\green191\blue110;\red148\green150\blue145;\red114\green159\blue207;\red227\green231\blue223;\red207\green162\blue114;\red158\green189\blue119;}
+\paperw11905\paperh16837\margl1134\margr1134\margt1134\margb1134\sectd\plain\f1\fs20
+\pard \cbpat1{{\cf2{}}{\cf13{from}} {\cf2{matplotlib}} {\cf13{import}} {\cf2{pyplot}} {\cf13{as}} {\cf2{plt}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{from}} {\cf2{scipy}}{\cf11{.}}{\cf2{cluster}}{\cf11{.}}{\cf2{hierarchy}} {\cf13{import}} {\cf2{dendrogram}}{\cf11{,}} {\cf2{linkage}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{import}} {\cf2{numpy}} {\cf13{as}} {\cf2{np}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{from}} {\cf2{compiler}}{\cf11{.}}{\cf2{ast}} {\cf13{import}} {\cf2{flatten}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{def}} {\cf2{}}{\cf16{plotcluster}}{\cf2{}}{\cf11{():}}}\par\pard
+\cbpat1{{\cf2{    Z}} {\cf11{=}} {\cf2{np}}{\cf11{.}}{\cf2{}}{\cf16{load}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'cluster_result.npy'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{    plt}}{\cf11{.}}{\cf2{}}{\cf16{figure}}{\cf2{}}{\cf11{(}}{\cf2{figsize}}{\cf11{=(}}{\cf2{}}{\cf4{{2}{5}}}{\cf2{}}{\cf11{,}} {\cf2{}}{\cf4{{1}{0}}}{\cf2{}}{\cf11{))}}}\par\pard
+\cbpat1{{\cf2{    plt}}{\cf11{.}}{\cf2{}}{\cf16{title}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'Hierarchical Clustering Dendrogram'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{    plt}}{\cf11{.}}{\cf2{}}{\cf16{xlabel}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'sample index'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{    plt}}{\cf11{.}}{\cf2{}}{\cf16{ylabel}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'distance'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf16{dendrogram}}{\cf2{}}{\cf11{(}}}\par\pard
+\cbpat1{{\cf2{        Z}}{\cf11{,}}}\par\pard
+\cbpat1{{\cf2{        leaf_rotation}}{\cf11{=}}{\cf2{}}{\cf4{{9}{0}}}{\cf2{}}{\cf11{.,}}  {\cf2{}}{\cf5{# rotates the x axis labels}}}\par\pard
+\cbpat1{{\cf2{        leaf_font_size}}{\cf11{=}}{\cf2{}}{\cf4{{8}}}{\cf2{}}{\cf11{.,}}  {\cf2{}}{\cf5{# font size for the x axis labels}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf11{)}}}\par\pard
+\cbpat1{{\cf2{    plt}}{\cf11{.}}{\cf2{}}{\cf16{show}}{\cf2{}}{\cf11{()}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{def}} {\cf2{}}{\cf16{plotZ}}{\cf2{}}{\cf11{():}}}\par\pard
+\cbpat1{{\cf2{   Z}} {\cf11{=}} {\cf2{np}}{\cf11{.}}{\cf2{}}{\cf16{load}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'cluster_result.npy'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{   y}} {\cf11{=}} {\cf2{Z}}{\cf11{[:,}}{\cf2{}}{\cf4{{2}}}{\cf2{}}{\cf11{]}}}\par\pard
+\cbpat1{{\cf2{   x}} {\cf11{=}} {\cf2{}}{\cf14{range}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf14{len}}{\cf2{}}{\cf11{(}}{\cf2{y}}{\cf11{))}}}\par\pard
+\cbpat1{{\cf2{   plt}}{\cf11{.}}{\cf2{}}{\cf16{scatter}}{\cf2{}}{\cf11{(}}{\cf2{x}}{\cf11{,}}{\cf2{y}}{\cf11{,}}{\cf2{alpha}}{\cf11{=}}{\cf2{}}{\cf4{{0}.{6}}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{   plt}}{\cf11{.}}{\cf2{}}{\cf16{show}}{\cf2{}}{\cf11{()}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{def}} {\cf2{}}{\cf16{__genget}}{\cf2{}}{\cf11{(}}{\cf2{generation}}{\cf11{):}}}\par\pard
+\cbpat1{{\cf2{    Z}} {\cf11{=}} {\cf2{np}}{\cf11{.}}{\cf2{}}{\cf16{load}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'cluster_result.npy'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{    ns}} {\cf11{=}} {\cf2{}}{\cf14{open}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'name.txt'}}{\cf2{}}{\cf11{,}} {\cf2{}}{\cf3{'r'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf5{#lengt = len(Z)}}}\par\pard
+\cbpat1{{\cf2{    namelist}} {\cf11{= []}}}\par\pard
+\cbpat1{{\cf2{    nameresult}} {\cf11{= []}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf13{for}} {\cf2{line}} {\cf13{in}} {\cf2{ns}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{        namelist}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{line}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf13{for}} {\cf2{i}} {\cf13{in}} {\cf2{}}{\cf14{range}}{\cf2{}}{\cf11{(}}{\cf2{generation}}{\cf11{):}}}\par\pard
+\cbpat1{{\cf2{        index{1}}} {\cf11{=}} {\cf2{}}{\cf14{int}}{\cf2{}}{\cf11{(}}{\cf2{Z}}{\cf11{[}}{\cf2{i}}{\cf11{,}} {\cf2{}}{\cf4{{0}}}{\cf2{}}{\cf11{])}}}\par\pard
+\cbpat1{{\cf2{        index{2}}} {\cf11{=}} {\cf2{}}{\cf14{int}}{\cf2{}}{\cf11{(}}{\cf2{Z}}{\cf11{[}}{\cf2{i}}{\cf11{,}} {\cf2{}}{\cf4{{1}}}{\cf2{}}{\cf11{])}}}\par\pard
+\cbpat1{{\cf2{        temp}} {\cf11{= []}}}\par\pard
+\cbpat1{{\cf2{        temp}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{namelist}}{\cf11{[}}{\cf2{index{1}}}{\cf11{])}}}\par\pard
+\cbpat1{{\cf2{        temp}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{namelist}}{\cf11{[}}{\cf2{index{2}}}{\cf11{])}}}\par\pard
+\cbpat1{{\cf2{        namelist}}{\cf11{[}}{\cf2{index{1}}}{\cf11{] =}} {\cf2{}}{\cf3{'be merged'}}{\cf2{}}}\par\pard
+\cbpat1{{\cf2{        namelist}}{\cf11{[}}{\cf2{index{2}}}{\cf11{] =}} {\cf2{}}{\cf3{'be merged'}}{\cf2{}}}\par\pard
+\cbpat1{{\cf2{        namelist}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{temp}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{    finallist}} {\cf11{=}} {\cf2{}}{\cf14{open}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'finallist.txt'}}{\cf2{}}{\cf11{,}} {\cf2{}}{\cf3{'w'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{    k}} {\cf11{=}} {\cf2{}}{\cf4{{0}}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf13{for}} {\cf2{a}} {\cf13{in}} {\cf2{namelist}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{}}        {\cf13{if}} {\cf2{a}} {\cf11{!=}} {\cf2{}}{\cf3{'be merged'}}{\cf2{}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{            k}} {\cf11{=}} {\cf2{k}}{\cf11{+}}{\cf2{}}{\cf4{{1}}}}\par\pard
+\cbpat1{{\cf2{            a}} {\cf11{=}} {\cf2{}}{\cf16{flatten}}{\cf2{}}{\cf11{(}}{\cf2{a}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{            nameresult}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{a}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}        }\par\pard
+\cbpat1{{\cf2{}}            {\cf13{for}} {\cf2{b}} {\cf13{in}} {\cf2{a}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{                finallist}}{\cf11{.}}{\cf2{}}{\cf16{write}}{\cf2{}}{\cf11{(}}{\cf2{b}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{            finallist}}{\cf11{.}}{\cf2{}}{\cf16{write}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'}}{\cf7{\\n}}{\cf3{'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf5{#finallist.write('result cluster num = ')}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf5{#finallist.write(str(k))}}}\par\pard
+\cbpat1{{\cf2{    finallist}}{\cf11{.}}{\cf2{}}{\cf16{close}}{\cf2{}}{\cf11{()}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf13{print}} {\cf2{k}}{\cf11{,}}{\cf2{}}{\cf14{len}}{\cf2{}}{\cf11{(}}{\cf2{nameresult}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf13{return}} {\cf2{nameresult}}}\par\pard
+\cbpat1{{\cf2{}}		{\cf5{#print namelist[index{1}], namelist[index{2}]}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}    }\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{if}} {\cf2{__name__}} {\cf11{==}} {\cf2{}}{\cf3{'__main__'}}{\cf2{}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf5{#plotcluster()}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf5{#plotZ()}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf16{__genget}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf4{{3}{1}{7}{5}}}{\cf2{}}{\cf11{)}}{\cf2{}}}\par\pard
+\cbpat1{}}

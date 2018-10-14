@@ -1,0 +1,71 @@
+{\rtf1\ansi \deff1{\fonttbl{\f1\fmodern\fprq1\fcharset0 Courier;}}{\colortbl;\red30\green36\blue38;\red186\green189\blue182;\red138\green226\blue52;\red138\green226\blue52;\red101\green103\blue99;\red101\green103\blue99;\red136\green138\blue133;\red229\green138\blue138;\red138\green226\blue52;\red101\green103\blue99;\red198\green191\blue110;\red148\green150\blue145;\red114\green159\blue207;\red227\green231\blue223;\red207\green162\blue114;\red158\green189\blue119;}
+\paperw11905\paperh16837\margl1134\margr1134\margt1134\margb1134\sectd\plain\f1\fs20
+\pard \cbpat1{{\cf2{}}{\cf5{# coding: utf-{8}}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{from}} {\cf2{read}} {\cf13{import}} {\cf2{Read}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{import}} {\cf2{fbcm}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{import}} {\cf2{numpy}} {\cf13{as}} {\cf2{np}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{import}} {\cf2{os}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{class}} {\cf2{}}{\cf16{Bcm}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf14{object}}{\cf2{}}{\cf11{):}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf3{'''}}}\par\pard
+\cbpat1{{\cf3{}}}\par\pard
+\cbpat1{{\cf3{    '''}}{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf13{def}} {\cf2{}}{\cf16{__init__}}{\cf2{}}{\cf11{(}}{\cf2{self}}{\cf11{,}}{\cf2{}}{\cf14{type}}{\cf2{}}{\cf11{=}}{\cf2{}}{\cf3{'poscar'}}{\cf2{}}{\cf11{):}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{        self}}{\cf11{.}}{\cf2{}}{\cf14{type}} {\cf2{}}{\cf11{=}} {\cf2{}}{\cf14{type}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf13{def}} {\cf2{}}{\cf16{bcm_calc}}{\cf2{}}{\cf11{(}}{\cf2{self}}{\cf11{,}}{\cf2{filepath}}{\cf11{):}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{        structure}} {\cf11{=}} {\cf2{}}{\cf16{Read}}{\cf2{}}{\cf11{(}}{\cf2{filepath}}{\cf11{,}}{\cf2{self}}{\cf11{.}}{\cf2{}}{\cf14{type}}{\cf2{}}{\cf11{).}}{\cf2{}}{\cf16{getStructure}}{\cf2{}}{\cf11{()}}}\par\pard
+\cbpat1{{\cf2{        nele}} {\cf11{=}} {\cf2{}}{\cf14{len}}{\cf2{}}{\cf11{(}}{\cf2{structure}}{\cf11{[}}{\cf2{}}{\cf3{'elements'}}{\cf2{}}{\cf11{])}}}\par\pard
+\cbpat1{{\cf2{        natom}} {\cf11{=}} {\cf2{}}{\cf14{sum}}{\cf2{}}{\cf11{(}}{\cf2{structure}}{\cf11{[}}{\cf2{}}{\cf3{'numbers'}}{\cf2{}}{\cf11{])}}}\par\pard
+\cbpat1{{\cf2{        lattice}} {\cf11{=}} {\cf2{structure}}{\cf11{[}}{\cf2{}}{\cf3{'lattice'}}{\cf2{}}{\cf11{]}}}\par\pard
+\cbpat1{{\cf2{        positions}} {\cf11{=}} {\cf2{structure}}{\cf11{[}}{\cf2{}}{\cf3{'positions'}}{\cf2{}}{\cf11{]}}}\par\pard
+\cbpat1{{\cf2{        numbers}} {\cf11{=}} {\cf2{structure}}{\cf11{[}}{\cf2{}}{\cf3{'numbers'}}{\cf2{}}{\cf11{]}}}\par\pard
+\cbpat1{{\cf2{        bcmatrix}} {\cf11{=}} {\cf2{fbcm}}{\cf11{.}}{\cf2{}}{\cf16{bcm}}{\cf2{}}{\cf11{(}}{\cf2{nele}}{\cf11{,}}{\cf2{natom}}{\cf11{,}}{\cf2{positions}}{\cf11{,}}{\cf2{lattice}}{\cf11{,}}{\cf2{numbers}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{        bcmatrix}} {\cf11{=}} {\cf2{np}}{\cf11{.}}{\cf2{}}{\cf16{array}}{\cf2{}}{\cf11{(}}{\cf2{bcmatrix}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}        {\cf13{return}} {\cf2{bcmatrix}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf13{def}} {\cf2{}}{\cf16{calc_folder}}{\cf2{}}{\cf11{(}}{\cf2{self}}{\cf11{,}}{\cf2{folderpath}}{\cf11{):}}}\par\pard
+\cbpat1{{\cf2{        resultstore}} {\cf11{= []}}}\par\pard
+\cbpat1{{\cf2{        k}} {\cf11{=}} {\cf2{}}{\cf4{{0}}}}\par\pard
+\cbpat1{{\cf2{}}        {\cf13{for}} {\cf2{root}}{\cf11{,}} {\cf2{dirs}}{\cf11{,}} {\cf2{files}} {\cf13{in}} {\cf2{os}}{\cf11{.}}{\cf2{}}{\cf16{walk}}{\cf2{}}{\cf11{(}}{\cf2{folderpath}}{\cf11{):}}}\par\pard
+\cbpat1{{\cf2{}}            {\cf13{for}} {\cf2{}}{\cf14{file}} {\cf2{}}{\cf13{in}} {\cf2{files}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{}}                {\cf13{if}} {\cf2{}}{\cf14{file}} {\cf2{}}{\cf11{!=}} {\cf2{}}{\cf3{'POSCAR'}}{\cf2{}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{}}                    {\cf13{continue}}}\par\pard
+\cbpat1{{\cf2{                k}} {\cf11{=}} {\cf2{k}} {\cf11{+}} {\cf2{}}{\cf4{{1}}}}\par\pard
+\cbpat1{{\cf2{                filepath}} {\cf11{=}} {\cf2{os}}{\cf11{.}}{\cf2{path}}{\cf11{.}}{\cf2{}}{\cf16{join}}{\cf2{}}{\cf11{(}}{\cf2{root}}{\cf11{,}} {\cf2{}}{\cf14{file}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}                {\cf13{print}} {\cf2{filepath}}}\par\pard
+\cbpat1{{\cf2{                bcmstore}} {\cf11{= []}}}\par\pard
+\cbpat1{{\cf2{                bcmatrix}} {\cf11{=}} {\cf2{self}}{\cf11{.}}{\cf2{}}{\cf16{bcm_calc}}{\cf2{}}{\cf11{(}}{\cf2{filepath}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{                bcmstore}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{bcmatrix}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{                bcmstore}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{filepath}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{                resultstore}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{bcmstore}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}        {\cf13{print}} {\cf2{}}{\cf3{'total num = '}}{\cf2{}}{\cf11{,}} {\cf2{k}}}\par\pard
+\cbpat1{{\cf2{}}        {\cf13{return}} {\cf2{resultstore}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf13{def}} {\cf2{}}{\cf16{distxy}}{\cf2{}}{\cf11{(}}{\cf2{self}}{\cf11{,}}{\cf2{x}}{\cf11{,}}{\cf2{y}}{\cf11{):}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}        {\cf13{if}} {\cf2{x}}{\cf11{.}}{\cf2{shape}} {\cf11{!=}} {\cf2{y}}{\cf11{.}}{\cf2{shape}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{}}            {\cf13{print}} {\cf2{}}{\cf3{'can not compare two matrix'}}{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}            {\cf16{exit}}{\cf2{}}{\cf11{()}}}\par\pard
+\cbpat1{{\cf2{    	d}} {\cf11{=}} {\cf2{np}}{\cf11{.}}{\cf2{linalg}}{\cf11{.}}{\cf2{}}{\cf16{norm}}{\cf2{}}{\cf11{(}}{\cf2{x}}{\cf11{-}}{\cf2{y}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}    	{\cf13{return}} {\cf2{d}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}    {\cf13{def}} {\cf2{}}{\cf16{dit{0}}}{\cf2{}}{\cf11{(}}{\cf2{self}}{\cf11{,}}{\cf2{x}}{\cf11{):}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{        a}} {\cf11{=}} {\cf2{np}}{\cf11{.}}{\cf2{linalg}}{\cf11{.}}{\cf2{}}{\cf16{norm}}{\cf2{}}{\cf11{(}}{\cf2{x}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}        {\cf13{return}} {\cf2{a}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}   }\par\pard
+\cbpat1{}}

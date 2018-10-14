@@ -16,12 +16,12 @@ def plotcluster():
     )
     plt.show()
 
-def plotZ():
-   Z = np.load('cluster_result.npy')
-   y = Z[:,2]
-   x = range(len(y))
-   plt.scatter(x,y,alpha=0.6)
-   plt.show()
+def plotgen_d():
+    Z = np.load('cluster_result.npy')
+    y = Z[:,2]
+    x = range(len(y))
+    plt.scatter(x,y,alpha=0.6,marker = '.')
+    plt.show()
 
 
 def __genget(generation):
@@ -42,7 +42,7 @@ def __genget(generation):
         namelist[index1] = 'be merged'
         namelist[index2] = 'be merged'
         namelist.append(temp)
-    finallist = open('finallist.txt', 'w')
+    finallist = open('clusterlist.txt', 'w')
     k = 0
     for a in namelist:
         if a != 'be merged':
@@ -67,5 +67,5 @@ def __genget(generation):
 
 if __name__ == '__main__':
     #plotcluster()
-    #plotZ()
-    __genget(3175)
+    plotgen_d()
+    #__genget(3175)

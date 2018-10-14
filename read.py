@@ -64,7 +64,8 @@ class Read(object):
                 self.type='xyz'
             elif self.file.endswith('.mol'):
                 self.type='mol'
-            #elif (self.file.split('/')[-1] == 'POSCAR') or (self.file.split('/')[-1] == 'CONTCAR'):
+            elif self.file.endswith('.vasp'):
+                self.type = 'poscar'
             elif any(key in self.file.split('/')[-1]
                      for key in ['POSCAR' or 'CONTCAR']):
                 self.type='poscar'
@@ -118,6 +119,8 @@ class Read(object):
 
         """
         import numpy as np
+        import math
+        from spaceGroupD3 import spacegroups as SG
         cf=parse_cif(self.file)
         cb=cf[0][1]
 

@@ -1,13 +1,13 @@
 # coding: utf-8
-from pbcm import Bcm
-#from read import Read
-import fbcm
 import os
 
+import numpy as np
 from matplotlib import pyplot as plt
 from scipy.cluster.hierarchy import dendrogram, linkage
-import numpy as np
-from clusterplot import __genget
+
+import fbcm
+from clusteranalys import __genget
+from pbcm import Bcm
 
 
 def distribute_calc(folderpath):
@@ -21,13 +21,13 @@ def distribute_calc(folderpath):
 	for result in resultmat:
 		bcmstore.append(result[0])	
 	k = len(bcmstore)
-	for i in range(1,k):#此处代码有错误
-		for j in range(i+1,k+1):
+	for i in range(k-1):
+		for j in range(i+1,k):
 			dist = Bcm().distxy(bcmstore[i],bcmstore[j])
 			diststore.append(dist)
 
 	for i in range(1,k+1):
-		dist0 = Bcm().dit0(bcmstore[i])
+		dist0 = Bcm().dist0(bcmstore[i])
 		dist0store.append(dist0)
 
 	diststore.sort()
@@ -48,6 +48,30 @@ def distribute_calc(folderpath):
 	b.close()
 
 
+def distribute_analys(partnum=None):
+    a = open('distances.txt', 'r')
+    b = open('calout.txt', 'w')
+
+    numcount = []
+    for i in range(partnum):
+        numcount.append(0)
+
+    for data in a:
+        pass
+    length = float(data) / partnum
+    a.seek(0, 0)
+    for data in a:
+        data = float(data)
+        for i in range(partnum):
+            if i*length < data < (i+1)*length:
+                numcount[i] += 1
+                break
+    for i in range(partnum):
+        b.write(str(numcount[i])+' '+str((i+1)*length))
+        b.write('\n')
+
+    b.close()
+    a.close()
 
 def __cluster(folderpath):
 	bcmstore = []
@@ -68,7 +92,7 @@ def __cluster(folderpath):
 
 
 def __reprecluster():
-	namef = open('finallist.txt','r')
+	namef = open('clusterlist.txt','r')
 	clusters = []
 	cluster = []
 	repreclusters = []

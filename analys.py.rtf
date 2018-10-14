@@ -1,0 +1,179 @@
+{\rtf1\ansi \deff1{\fonttbl{\f1\fmodern\fprq1\fcharset0 Courier;}}{\colortbl;\red30\green36\blue38;\red186\green189\blue182;\red138\green226\blue52;\red138\green226\blue52;\red101\green103\blue99;\red101\green103\blue99;\red136\green138\blue133;\red229\green138\blue138;\red138\green226\blue52;\red101\green103\blue99;\red198\green191\blue110;\red148\green150\blue145;\red114\green159\blue207;\red227\green231\blue223;\red207\green162\blue114;\red158\green189\blue119;}
+\paperw11905\paperh16837\margl1134\margr1134\margt1134\margb1134\sectd\plain\f1\fs20
+\pard \cbpat1{{\cf2{}}{\cf5{# coding: utf-{8}}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{import}} {\cf2{os}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{import}} {\cf2{numpy}} {\cf13{as}} {\cf2{np}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{from}} {\cf2{matplotlib}} {\cf13{import}} {\cf2{pyplot}} {\cf13{as}} {\cf2{plt}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{from}} {\cf2{scipy}}{\cf11{.}}{\cf2{cluster}}{\cf11{.}}{\cf2{hierarchy}} {\cf13{import}} {\cf2{dendrogram}}{\cf11{,}} {\cf2{linkage}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{import}} {\cf2{fbcm}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{from}} {\cf2{clusterplot}} {\cf13{import}} {\cf2{__genget}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{from}} {\cf2{pbcm}} {\cf13{import}} {\cf2{Bcm}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{def}} {\cf2{}}{\cf16{distribute_calc}}{\cf2{}}{\cf11{(}}{\cf2{folderpath}}{\cf11{):}}}\par\pard
+\cbpat1{{\cf2{	a}} {\cf11{=}} {\cf2{}}{\cf14{open}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'distances.txt'}}{\cf2{}}{\cf11{,}}{\cf2{}}{\cf3{'w'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{	b}} {\cf11{=}} {\cf2{}}{\cf14{open}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'distfrom{0}.txt'}}{\cf2{}}{\cf11{,}}{\cf2{}}{\cf3{'w'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{	bcmstore}} {\cf11{= []}}}\par\pard
+\cbpat1{{\cf2{	diststore}} {\cf11{= []}}}\par\pard
+\cbpat1{{\cf2{	dist{0}store}} {\cf11{= []}}}\par\pard
+\cbpat1{{\cf2{}}	}\par\pard
+\cbpat1{{\cf2{	resultmat}} {\cf11{=}} {\cf2{}}{\cf16{Bcm}}{\cf2{}}{\cf11{().}}{\cf2{}}{\cf16{calc_folder}}{\cf2{}}{\cf11{(}}{\cf2{folderpath}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}	{\cf13{for}} {\cf2{result}} {\cf13{in}} {\cf2{resultmat}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{		bcmstore}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{result}}{\cf11{[}}{\cf2{}}{\cf4{{0}}}{\cf2{}}{\cf11{])}}	}\par\pard
+\cbpat1{{\cf2{	k}} {\cf11{=}} {\cf2{}}{\cf14{len}}{\cf2{}}{\cf11{(}}{\cf2{bcmstore}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}	{\cf13{for}} {\cf2{i}} {\cf13{in}} {\cf2{}}{\cf14{range}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf4{{1}}}{\cf2{}}{\cf11{,}}{\cf2{k}}{\cf11{):}}{\cf2{}}{\cf5{#æ­\'e4å\'e4\'c4ä»£ç\'e0\'c1æ\'dc\'c9é”\'d9è¯¯}}}\par\pard
+\cbpat1{{\cf2{}}		{\cf13{for}} {\cf2{j}} {\cf13{in}} {\cf2{}}{\cf14{range}}{\cf2{}}{\cf11{(}}{\cf2{i}}{\cf11{+}}{\cf2{}}{\cf4{{1}}}{\cf2{}}{\cf11{,}}{\cf2{k}}{\cf11{+}}{\cf2{}}{\cf4{{1}}}{\cf2{}}{\cf11{):}}}\par\pard
+\cbpat1{{\cf2{			dist}} {\cf11{=}} {\cf2{}}{\cf16{Bcm}}{\cf2{}}{\cf11{().}}{\cf2{}}{\cf16{distxy}}{\cf2{}}{\cf11{(}}{\cf2{bcmstore}}{\cf11{[}}{\cf2{i}}{\cf11{],}}{\cf2{bcmstore}}{\cf11{[}}{\cf2{j}}{\cf11{])}}}\par\pard
+\cbpat1{{\cf2{			diststore}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{dist}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}	{\cf13{for}} {\cf2{i}} {\cf13{in}} {\cf2{}}{\cf14{range}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf4{{1}}}{\cf2{}}{\cf11{,}}{\cf2{k}}{\cf11{+}}{\cf2{}}{\cf4{{1}}}{\cf2{}}{\cf11{):}}}\par\pard
+\cbpat1{{\cf2{		dist{0}}} {\cf11{=}} {\cf2{}}{\cf16{Bcm}}{\cf2{}}{\cf11{().}}{\cf2{}}{\cf16{dit{0}}}{\cf2{}}{\cf11{(}}{\cf2{bcmstore}}{\cf11{[}}{\cf2{i}}{\cf11{])}}}\par\pard
+\cbpat1{{\cf2{		dist{0}store}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{dist{0}}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{	diststore}}{\cf11{.}}{\cf2{}}{\cf16{sort}}{\cf2{}}{\cf11{()}}}\par\pard
+\cbpat1{{\cf2{	dist{0}store}}{\cf11{.}}{\cf2{}}{\cf16{sort}}{\cf2{}}{\cf11{()}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}	{\cf13{for}} {\cf2{num}} {\cf13{in}} {\cf2{diststore}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{		num}} {\cf11{=}} {\cf2{}}{\cf14{str}}{\cf2{}}{\cf11{(}}{\cf2{num}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{		a}}{\cf11{.}}{\cf2{}}{\cf16{write}}{\cf2{}}{\cf11{(}}{\cf2{num}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{		a}}{\cf11{.}}{\cf2{}}{\cf16{write}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'}}{\cf7{\\n}}{\cf3{'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}	{\cf13{for}} {\cf2{num}} {\cf13{in}} {\cf2{dist{0}store}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{		num}} {\cf11{=}} {\cf2{}}{\cf14{str}}{\cf2{}}{\cf11{(}}{\cf2{num}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{		b}}{\cf11{.}}{\cf2{}}{\cf16{write}}{\cf2{}}{\cf11{(}}{\cf2{num}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{		b}}{\cf11{.}}{\cf2{}}{\cf16{write}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'}}{\cf7{\\n}}{\cf3{'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{	a}}{\cf11{.}}{\cf2{}}{\cf16{close}}{\cf2{}}{\cf11{()}}}\par\pard
+\cbpat1{{\cf2{	b}}{\cf11{.}}{\cf2{}}{\cf16{close}}{\cf2{}}{\cf11{()}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{def}} {\cf2{}}{\cf16{__cluster}}{\cf2{}}{\cf11{(}}{\cf2{folderpath}}{\cf11{):}}}\par\pard
+\cbpat1{{\cf2{	bcmstore}} {\cf11{= []}}}\par\pard
+\cbpat1{{\cf2{	resultmat}} {\cf11{=}} {\cf2{}}{\cf16{Bcm}}{\cf2{}}{\cf11{().}}{\cf2{}}{\cf16{calc_folder}}{\cf2{}}{\cf11{(}}{\cf2{folderpath}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{	ns}} {\cf11{=}} {\cf2{}}{\cf14{open}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'name.txt'}}{\cf2{}}{\cf11{,}}{\cf2{}}{\cf3{'w'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}	{\cf13{for}} {\cf2{result}} {\cf13{in}} {\cf2{resultmat}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{		aresult}} {\cf11{=}} {\cf2{np}}{\cf11{.}}{\cf2{}}{\cf16{array}}{\cf2{}}{\cf11{(}}{\cf2{result}}{\cf11{[}}{\cf2{}}{\cf4{{0}}}{\cf2{}}{\cf11{])}}}\par\pard
+\cbpat1{{\cf2{		aresult}} {\cf11{=}} {\cf2{aresult}}{\cf11{.}}{\cf2{}}{\cf16{flatten}}{\cf2{}}{\cf11{()}}}\par\pard
+\cbpat1{{\cf2{		bcmstore}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{aresult}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{		ns}}{\cf11{.}}{\cf2{}}{\cf16{write}}{\cf2{}}{\cf11{(}}{\cf2{result}}{\cf11{[}}{\cf2{}}{\cf4{{1}}}{\cf2{}}{\cf11{])}}}\par\pard
+\cbpat1{{\cf2{		ns}}{\cf11{.}}{\cf2{}}{\cf16{write}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'}}{\cf7{\\n}}{\cf3{'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{	ns}}{\cf11{.}}{\cf2{}}{\cf16{close}}{\cf2{}}{\cf11{()}}}\par\pard
+\cbpat1{{\cf2{	Z}} {\cf11{=}} {\cf2{}}{\cf16{linkage}}{\cf2{}}{\cf11{(}}{\cf2{bcmstore}}{\cf11{,}}{\cf2{}}{\cf3{'ward'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{	np}}{\cf11{.}}{\cf2{}}{\cf16{save}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'cluster_result.npy'}}{\cf2{}}{\cf11{,}} {\cf2{Z}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{	np}}{\cf11{.}}{\cf2{}}{\cf16{savetxt}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'cluster.txt'}}{\cf2{}}{\cf11{,}} {\cf2{Z}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}	{\cf13{return}} {\cf2{Z}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{def}} {\cf2{}}{\cf16{__reprecluster}}{\cf2{}}{\cf11{():}}}\par\pard
+\cbpat1{{\cf2{	namef}} {\cf11{=}} {\cf2{}}{\cf14{open}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'finallist.txt'}}{\cf2{}}{\cf11{,}}{\cf2{}}{\cf3{'r'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{	clusters}} {\cf11{= []}}}\par\pard
+\cbpat1{{\cf2{	cluster}} {\cf11{= []}}}\par\pard
+\cbpat1{{\cf2{	repreclusters}} {\cf11{= []}}}\par\pard
+\cbpat1{{\cf2{	clusbcmstore}} {\cf11{= []}}}\par\pard
+\cbpat1{{\cf2{	ns}} {\cf11{=}} {\cf2{}}{\cf14{open}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'represent_cluster.txt'}}{\cf2{}}{\cf11{,}}{\cf2{}}{\cf3{'w'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}	{\cf13{for}} {\cf2{name}} {\cf13{in}} {\cf2{namef}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{}}		{\cf13{if}} {\cf2{name}} {\cf11{!=}} {\cf2{}}{\cf3{'}}{\cf7{\\n}}{\cf3{'}}{\cf2{}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{			cluster}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{name}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}		{\cf13{else}}{\cf2{}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{			clusters}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{cluster}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{			cluster}} {\cf11{= []}}}\par\pard
+\cbpat1{{\cf2{}}	}\par\pard
+\cbpat1{{\cf2{}}	{\cf13{for}} {\cf2{cluste}} {\cf13{in}} {\cf2{clusters}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{}}		{\cf13{for}} {\cf2{struct}} {\cf13{in}} {\cf2{cluste}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{			struct}} {\cf11{=}} {\cf2{struct}}{\cf11{.}}{\cf2{}}{\cf16{strip}}{\cf2{}}{\cf11{(}}{\cf2{}}{\cf3{'}}{\cf7{\\n}}{\cf3{'}}{\cf2{}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{			bcm}} {\cf11{=}} {\cf2{}}{\cf16{Bcm}}{\cf2{}}{\cf11{().}}{\cf2{}}{\cf16{bcm_calc}}{\cf2{}}{\cf11{(}}{\cf2{struct}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{			clusbcmstore}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{bcm}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{		sumdists}} {\cf11{= []}}}\par\pard
+\cbpat1{{\cf2{		k}} {\cf11{=}} {\cf2{}}{\cf14{len}}{\cf2{}}{\cf11{(}}{\cf2{cluste}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}		{\cf13{for}} {\cf2{i}} {\cf13{in}} {\cf2{}}{\cf14{range}}{\cf2{}}{\cf11{(}}{\cf2{k}}{\cf11{):}}}\par\pard
+\cbpat1{{\cf2{			sumdist}} {\cf11{=}} {\cf2{}}{\cf4{{0}}} }\par\pard
+\cbpat1{{\cf2{}}			{\cf13{for}} {\cf2{j}} {\cf13{in}} {\cf2{}}{\cf14{range}}{\cf2{}}{\cf11{(}}{\cf2{k}}{\cf11{):}}}\par\pard
+\cbpat1{{\cf2{				dist}} {\cf11{=}} {\cf2{}}{\cf16{Bcm}}{\cf2{}}{\cf11{().}}{\cf2{}}{\cf16{distxy}}{\cf2{}}{\cf11{(}}{\cf2{clusbcmstore}}{\cf11{[}}{\cf2{i}}{\cf11{],}} {\cf2{clusbcmstore}}{\cf11{[}}{\cf2{j}}{\cf11{])}}}\par\pard
+\cbpat1{{\cf2{				sumdist}} {\cf11{+=}} {\cf2{dist}}}\par\pard
+\cbpat1{{\cf2{			sumdists}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{sumdist}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{		mindist}} {\cf11{=}} {\cf2{}}{\cf14{min}}{\cf2{}}{\cf11{(}}{\cf2{sumdists}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{		minindex}} {\cf11{=}} {\cf2{sumdists}}{\cf11{.}}{\cf2{}}{\cf16{index}}{\cf2{}}{\cf11{(}}{\cf2{mindist}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{		reprecluster}} {\cf11{=}} {\cf2{cluste}}{\cf11{[}}{\cf2{minindex}}{\cf11{]}}}\par\pard
+\cbpat1{{\cf2{		repreclusters}}{\cf11{.}}{\cf2{}}{\cf16{append}}{\cf2{}}{\cf11{(}}{\cf2{reprecluster}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{		ns}}{\cf11{.}}{\cf2{}}{\cf16{write}}{\cf2{}}{\cf11{(}}{\cf2{reprecluster}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}		{\cf13{print}} {\cf2{sumdists}}}\par\pard
+\cbpat1{{\cf2{}}		{\cf13{print}} {\cf2{minindex}}}\par\pard
+\cbpat1{{\cf2{}}		{\cf13{print}} {\cf2{reprecluster}}}\par\pard
+\cbpat1{{\cf2{}}		}\par\pard
+\cbpat1{{\cf2{	ns}}{\cf11{.}}{\cf2{}}{\cf16{close}}{\cf2{}}{\cf11{()}}}\par\pard
+\cbpat1{{\cf2{}}	{\cf13{print}} {\cf2{}}{\cf14{len}}{\cf2{}}{\cf11{(}}{\cf2{repreclusters}}{\cf11{)}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}	}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}		}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf13{if}} {\cf2{__name__}} {\cf11{==}} {\cf2{}}{\cf3{'__main__'}}{\cf2{}}{\cf11{:}}}\par\pard
+\cbpat1{{\cf2{	path}} {\cf11{=}} {\cf2{}}{\cf3{'/home/jhxie/{1}e/'}}{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#	distribute_calc(path)}}}\par\pard
+\cbpat1{{\cf2{}}	{\cf5{#a = __cluster(path)}}}\par\pard
+\cbpat1{{\cf2{}}	{\cf16{__reprecluster}}{\cf2{}}{\cf11{()}}}\par\pard
+\cbpat1{{\cf2{}}	{\cf5{#b = open('cluster_result.txt','w')}}}\par\pard
+\cbpat1{{\cf2{}}	{\cf5{#for i in a:}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#		b.write(i)}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#		b.write('\\n')}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#	b.close()}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#tau=[[{0}.{1},{0}.{2},{0}.{3}],[{0}.{5},{0}.{6},{0}.{7}],[{0}.{8},{0}.{9},{0}.{0}]]}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#lattice=[[{1},{2},{3}],[{4},{5},{6}],[{7},{8},{9}]]}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#nele={1}}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#natom={3}}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#ele=[{3}]}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#a=fbcm.bcm({1},{3},tau,lattice,ele)}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#print a}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#a = Read('str/{0}.vasp','poscar').getStructure()}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#a = Bcm('str/{0}.vasp','poscar').bcm_calc()}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#b = Bcm('str/{1}.vasp','poscar').bcm_calc()}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#d = Bcm().distxy(a,b)}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#a = np.array(a)}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#print a}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#print d}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#print a.ndim}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#print a.shape}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#print a.size}}}\par\pard
+\cbpat1{{\cf2{}}{\cf5{#,a.shape,a.size,a.dtype,a.itemsize,a.data}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}}\par\pard
+\cbpat1{{\cf2{}}{\cf3{'''}}}\par\pard
+\cbpat1{{\cf3{for i in a:}}}\par\pard
+\cbpat1{{\cf3{	for j in i:}}}\par\pard
+\cbpat1{{\cf3{		for k in j:}}}\par\pard
+\cbpat1{{\cf3{			print k}}}\par\pard
+\cbpat1{{\cf3{'''}}{\cf2{}}}\par\pard
+\cbpat1{}}
