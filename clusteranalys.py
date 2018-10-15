@@ -3,6 +3,7 @@ from scipy.cluster.hierarchy import dendrogram, linkage
 import numpy as np
 from compiler.ast import flatten
 
+
 def plotcluster():
     Z = np.load('cluster_result.npy')
     plt.figure(figsize=(25, 10))
@@ -12,12 +13,15 @@ def plotcluster():
     dendrogram(
         Z,
         leaf_rotation=90.,  # rotates the x axis labels
-        leaf_font_size=8.,  # font size for the x axis labels
+        leaf_font_size=0.,  # font size for the x axis labels
     )
     plt.show()
 
 def plotgen_d():
     Z = np.load('cluster_result.npy')
+    #y = []
+    #for i in Z[:,2]:
+    #    y.append(math.log10(i))
     y = Z[:,2]
     x = range(len(y))
     plt.scatter(x,y,alpha=0.6,marker = '.')

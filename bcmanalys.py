@@ -125,12 +125,13 @@ def __reprecluster():
 		reprecluster = cluste[minindex]
 		repreclusters.append(reprecluster)
 		ns.write(reprecluster)
-		print sumdists
-		print minindex
-		print reprecluster
+#		print sumdists
+#		print minindex
+#		print reprecluster
 		
 	ns.close()
-	print len(repreclusters)
+	namef.close()
+#	print len(repreclusters)
 
 	
 
